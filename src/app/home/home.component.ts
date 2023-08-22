@@ -32,6 +32,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.searchService.setSearchTerm(''); //Initializes the search term
+    
     combineLatest([
       this.productsObservable,
       this.searchService.search$.pipe(
@@ -39,14 +41,16 @@ export class HomeComponent implements OnInit {
         distinctUntilChanged()
       ),
     ]).subscribe(([result, searchTerm]) => {
+        this.productService.products = result.products;
+        this.totalProducts = result.total;
       if (result.products) {
         this.filteredProducts = this.filterProductsByTitle(searchTerm);
-      }
 
-      if (this.filteredProducts.length === 0) {
-        this.noSearchResults = true;
-      } else {
-        this.noSearchResults = false;
+        if (this.filteredProducts.length === 0) {
+            this.noSearchResults = true;
+          } else {
+            this.noSearchResults = false;
+          }
       }
     });
   }
@@ -56,8 +60,6 @@ export class HomeComponent implements OnInit {
     this.productService.getProducts(skip, limit).subscribe(
       (result) => {
         this.isProductsAvailable.next(result);
-        this.productService.products = result.products;
-        this.totalProducts = result.total;
       },
       (error) => {
         throwError(error);
@@ -85,6 +87,5 @@ export class HomeComponent implements OnInit {
       | any
   ) {
     this.getProducts(event.page, event.rows);
-    this.filteredProducts = this.productService.products;
   }
 }

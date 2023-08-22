@@ -36,6 +36,9 @@
   .product-name {
     font-weight: bold;
     display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflow content */
   }
   
   .product-price {
