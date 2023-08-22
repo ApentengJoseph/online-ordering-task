@@ -1,0 +1,12 @@
+<div class="home">
+    <app-header></app-header>
+    <div class="content">
+      <div class="spinner-container" *ngIf="!filteredProducts">
+        <i class="pi pi-spin pi-spinner spinner" style="font-size: 5rem"></i>
+      </div>
+      <app-product-list *ngIf="filteredProducts" [filteredProducts]="filteredProducts"></app-product-list>
+      <p *ngIf="noSearchResults" class="no-results-message">No results found for the search.</p>
+      <p-paginator *ngIf="filteredProducts" (onPageChange)="onPageChange($event)" [totalRecords]="totalProducts" [rowsPerPageOptions]="[20, 25, 50]"></p-paginator>
+    </div>
+  </div>
+  

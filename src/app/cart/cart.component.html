@@ -1,0 +1,22 @@
+<app-header></app-header>
+<div class="cart-container">
+  <h1 class="cart-title">Your Cart</h1>
+  <div *ngFor="let item of cartItems" class="cart-item">
+    <div class="cart-item-details">
+      <img [src]="item.product.thumbnail" alt="{{ item.product.title }}" class="cart-item-image">
+      <div class="cart-item-info">
+        <h2 class="cart-item-title">{{ item.product.title }}</h2>
+        <p class="cart-item-price">{{ item.product.price | currency:'USD' }}</p>
+        <div class="cart-item-actions">
+          <button class="cart-remove-button" (click)="removeFromCart(item.product)">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Display empty cart message if cart is empty -->
+    <div *ngIf="cartItems.length === 0" class="empty-cart-message">
+        Your cart is empty. Start shopping now!
+      </div>
+      <button *ngIf="cartItems.length > 0" class="checkout-button" (click)="navigateToCheckout()">Checkout</button>
+</div>

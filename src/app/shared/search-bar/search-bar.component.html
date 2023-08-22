@@ -1,0 +1,4 @@
+  <span *ngIf="urlPath == 'home'" class="p-input-icon-left">
+    <i class="pi pi-search"></i>
+    <input type="text" [(ngModel)]="searchTerm" (input)="onSearch()" pInputText placeholder="Search..."/>
+</span>

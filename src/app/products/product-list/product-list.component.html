@@ -1,0 +1,28 @@
+<div class="product-list">
+    <div class="product-grid">
+      <div class="product-card" *ngFor="let product of filteredProducts" [routerLink]="['/product', product.id]">
+        <p-card class="p-p-2">
+          <img src="{{ product.thumbnail }}" alt="{{ product.title }}" class="product-image">
+          <div class="product-details">
+            <span class="product-name">{{ product.title }}</span>
+            <span class="product-price">
+              {{ product.price | currency }}
+              <span class="product-discount" *ngIf="product.discountPercentage">
+                ({{ product.discountPercentage }}% off)
+              </span>
+            </span>
+            <span class="product-rating">
+              Rating: {{ product.rating }}
+            </span>
+            <span class="product-stock">
+              {{ product.stock }} in stock
+            </span>
+            <span class="product-brand">
+              Brand: {{ product.brand }}
+            </span>
+          </div>
+        </p-card>
+      </div>
+    </div>   
+  </div>
+  

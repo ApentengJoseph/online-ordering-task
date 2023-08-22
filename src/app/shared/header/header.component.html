@@ -1,0 +1,10 @@
+<div class="header p-d-flex p-jc-between p-ai-center p-p-3 p-bg-primary p-text-light">
+    <div [routerLink]="['/']" class="logo-container p-d-flex p-ai-center">
+      <div class="logo-text text-2xl text-blue-500">Online Ordering</div>
+    </div>
+    <app-search-bar [urlPath]="urlPath" (searchEmitter)="onSearch($event)"></app-search-bar>
+    <nav class="nav p-d-flex p-gap-4 align-items-center">
+      <i [routerLink]="['/cart']" class="pi pi-shopping-cart cursor-pointer mr-4 p-text-secondary" pBadge style="font-size: 2rem" value="{{ cartService.getCartItemCount() }}"></i>
+    </nav>
+  </div>
+  

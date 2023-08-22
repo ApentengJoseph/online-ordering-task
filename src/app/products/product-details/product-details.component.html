@@ -1,0 +1,23 @@
+<app-header></app-header>
+<div *ngIf="selectedProduct" class="product-details">
+  <div class="product-gallery">
+    <img [src]="selectedImage" alt="{{ selectedProduct.title }}" class="main-image">
+    <!-- Display additional product images here -->
+    <div class="additional-images">
+        <img *ngFor="let image of selectedProduct.images" (click)="changeSelectedImage(image)" [src]="image" alt="{{ selectedProduct.title }}" class="thumbnail-image">
+      </div>
+  </div>
+  <div class="product-info">
+    <h1 class="product-title">{{ selectedProduct.title }}</h1>
+    <p class="product-description">{{ selectedProduct.description }}</p>
+    <p class="product-price">Price: ${{ selectedProduct.price }}</p>
+    <p class="product-stock">In Stock: {{ selectedProduct.stock }}</p>
+    <div class="product-actions">
+        <button class="add-to-cart-button" (click)="addToCart(selectedProduct)" [disabled]="selectedProduct.stock === 0">
+            {{ cartService.isProductInCart(selectedProduct) ? 'Remove from Cart' : 'Add to Cart' }}
+          </button>
+      <button class="back-button" (click)="goBack()">Back to Products</button>
+    </div>
+    
+  </div>
+</div>
